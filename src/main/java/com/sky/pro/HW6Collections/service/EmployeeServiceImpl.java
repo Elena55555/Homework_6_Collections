@@ -12,7 +12,8 @@ import com.sky.pro.HW6Collections.exception.EmployeeStorageIsFullList;
 
 import org.springframework.stereotype.Service;
 
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -20,30 +21,34 @@ import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final int STORAGE_SIZE = 5;
+    private final List <Employee> employees;
+    public EmployeeServiceImpl(List<Employee> employees
 
+    ) {
+        this.employees = new ArrayList<>();
+    }
 
-    private final List<Employee> employees =  List.of(
-
-            new Employee(" Иван  ", "Иванов" ),
-
-            new Employee(" Семен  ", "Горбунков "),
-
-            new Employee("Петр  ", " Петров"),
-
-            new Employee(" Николай ",  "Николаев"),
-
-            new Employee("  Федор  ", "Федоров"));
+//    private final List<Employee> employees =  List.of(
+//
+//            new Employee(" Иван  ", "Иванов" ),
+//
+//            new Employee(" Семен  ", "Горбунков "),
+//
+//            new Employee("Петр  ", " Петров"),
+//
+//            new Employee(" Николай ",  "Николаев"),
+//
+//            new Employee("  Федор  ", "Федоров"));
 
 
     @Override
 
-    public Employee addEmployee(String name, String lastName) throws EmployeeStorageIsFullList, EmployeeAlreadyAddedInList{
+    public Employee add(String name, String lastName) throws EmployeeStorageIsFullList, EmployeeAlreadyAddedInList{
 
         Employee employee = new Employee(name, lastName);
 
 
-
+        int STORAGE_SIZE = 5;
         if (employees.size() == STORAGE_SIZE) {
 
             throw new EmployeeStorageIsFullList("Хранилище заполнено");
@@ -54,15 +59,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employees.contains(employee)) {
 
             throw new EmployeeAlreadyAddedInList("Сотрудник уже есть в хранилище");
-
         }
-
-
         employees.add(employee);
-
         return employee;
-
-
     }
 
 
@@ -70,55 +69,37 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
 
 
-    public Employee removeEmployee(String name, String lastName) throws EmployeeNotFoundInList{
+    public Employee remove(String name, String lastName) throws EmployeeNotFoundInList{
 
         Employee employee = new Employee(name, lastName);
 
 
-        if (!employees.contains(employee)) {
-
-            throw new EmployeeNotFoundInList("Такого  сотрудника нет в хранилище");
-
+        if ( employees.contains(employee)) {
+            employees.remove(employee);
+            return employee;
         }
 
-        employees.remove(employee);
-
-
-        return employee;
-
+            throw new EmployeeNotFoundInList("Такого  сотрудника нет в хранилище");
     }
 
     @Override
 
-    public Employee findEmployee(String name, String lastName) throws EmployeeNotFoundInList {
+    public Employee find(String name, String lastName) throws EmployeeNotFoundInList {
 
-        Employee employeeFind = new Employee(name, lastName);
+        Employee employee = new Employee(name, lastName);
 
 
-        if (!employees.contains(employeeFind)) {
-
-            throw new EmployeeNotFoundInList("Такого  сотрудника нет в хранилище");
-
-        }
-
-        for (Employee employee : employees) {
-
-            if (employee.equals(employeeFind)) {
-
-                return employee;
-
-            }
+        if (employees.contains(employee )) {
+            return employee;
 
         }
+        throw new EmployeeNotFoundInList("Такого  сотрудника нет в хранилище");
 
-        return null;
-
-    }
-
+        }
 
     @Override
 
-    public List <Employee> getAllEmployees() {
+    public List <Employee> getAll() {
 
         return employees;
 

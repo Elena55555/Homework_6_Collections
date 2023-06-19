@@ -42,7 +42,7 @@ public class EmployeeController {
 
     ) {
 
-           return   employeeService.addEmployee(name,lastName);
+           return   employeeService.add(name,lastName);
 
     }
 
@@ -57,7 +57,7 @@ public class EmployeeController {
 
     ) {
 
-         return employeeService.removeEmployee(name, lastName);
+         return employeeService.remove(name, lastName);
 
     }
 
@@ -72,7 +72,7 @@ public class EmployeeController {
 
     ) {
 
-         return employeeService.findEmployee(name, lastName);
+         return employeeService.find(name, lastName);
 
     }
 
@@ -85,7 +85,7 @@ public class EmployeeController {
     public List <Employee>  getAllEmployees() {
 
 
-        return employeeService.getAllEmployees();
+        return employeeService.getAll();
 
     }
 }

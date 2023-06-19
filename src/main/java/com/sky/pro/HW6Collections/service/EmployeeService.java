@@ -20,14 +20,14 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    Employee addEmployee (String name, String lastName)throws EmployeeStorageIsFullList, EmployeeAlreadyAddedInList;
+    Employee add (String name, String lastName)throws EmployeeStorageIsFullList, EmployeeAlreadyAddedInList;
 
-    Employee removeEmployee (String name, String lastName)throws EmployeeNotFoundInList;
-
-
-    Employee findEmployee  (String name, String lastName)throws EmployeeNotFoundInList;
+    Employee remove (String name, String lastName)throws EmployeeNotFoundInList;
 
 
-    List<Employee> getAllEmployees();
+    Employee find (String name, String lastName)throws EmployeeNotFoundInList;
+
+
+    List<Employee> getAll();
 
 }
