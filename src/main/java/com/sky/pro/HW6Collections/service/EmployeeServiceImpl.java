@@ -21,12 +21,32 @@ import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final List <Employee> employees;
-    public EmployeeServiceImpl(List<Employee> employees
+    private final List <Employee> employees  = List.of(new Employee(" Иван  ", "Иванов" ),
 
-    ) {
-        this.employees = new ArrayList<>();
-    }
+            new Employee(" Семен  ", "Горбунков "),
+
+            new Employee("Петр  ", " Петров"),
+
+            new Employee(" Николай ",  "Николаев"),
+
+            new Employee("  Федор  ", "Федоров") );
+//    public EmployeeServiceImpl(
+
+//            List<Employee> employees
+
+//    =  List.of(
+//
+//             new Employee(" Иван  ", "Иванов" ),
+//
+//             new Employee(" Семен  ", "Горбунков "),
+//
+//             new Employee("Петр  ", " Петров"),
+//
+//             new Employee(" Николай ",  "Николаев"),
+//
+//             new Employee("  Федор  ", "Федоров"));   {
+//        this.employees = new ArrayList<>();
+//    }
 
 //    private final List<Employee> employees =  List.of(
 //
