@@ -20,6 +20,10 @@ import java.util.List;
 
 public interface EmployeeService {
 
+
+
+
+
     Employee add (String name, String lastName)throws EmployeeStorageIsFullList, EmployeeAlreadyAddedInList;
 
     Employee remove (String name, String lastName)throws EmployeeNotFoundInList;
@@ -29,5 +33,6 @@ public interface EmployeeService {
 
 
     List<Employee> getAll();
+
 
 }
